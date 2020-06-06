@@ -1,0 +1,77 @@
+body{	
+  		background-image:url(images/dimension.png);
+        font-family: 'Open Sans', sans-serif;
+}
+
+/*.pageTitle{
+        text-align: center;
+}*/
+
+.jumbotron{
+		color: #FF0000;/*red*/
+        text-align: center;
+		font-family: 'Pacifico', cursive;
+        background: none; 
+}
+
+ul.nav a:hover { color: # !important; }
+
+.navbar-collapse.collapse {
+        text-align: center; /* Set this */
+        display: block !important;
+        height: auto !important;
+        padding-bottom: 0;
+        overflow: visible !important;
+}
+
+.navbar-default {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.navbar-nav {
+    float:none;
+    display: inline-block;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #666;/*gray*/
+    display:inline-block;
+    text-decoration: none;
+    font-weight:bold;
+    font-size: 150%;
+}
+
+.dropdown-menu{
+    background-color: #fff;/*black*/
+}
+
+#main{
+    padding: none;
+}
+
+p#long{
+	margin-left: auto;
+  	margin-right: auto;
+  	margin-bottom: auto;
+	margin-top: auto;
+  	padding:0;
+  	border:0;
+  	width: 80%;
+  	height: 20%
+    line-height: 1em;
+  	font-size:100%;
+}  		
+
+footer{
+		margin-left:auto;
+  		margin-right: auto;
+  		margin-bottom: auto;
+        margin-top: auto;
+		padding:0;
+		border:0;
+		width: 80%;
+		height:1%;
+        font-size:75%;
+        text-align: center;
+}  		

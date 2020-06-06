@@ -1,0 +1,10 @@
+div#content{
+    margin-left:auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-top: auto;
+	padding:0;
+    border:0;
+    font-weight: 100;
+    text-align: center;
+}

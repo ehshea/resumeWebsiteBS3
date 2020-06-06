@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id = "main" class = "container-fluid">
+        <div id = "contentPanel">
+        <div id = "triPanel" class="diePanel"><canvas id="threesided" width="100px" height="100px"></canvas></div>
+    </div>
+    <script>
+        document.body.style.backgroundColor = "gray";
+        var contentPanel = document.getElementById("contentPanel");
+            contentPanel.style.border = "1px solid #000000";
+        var diePanel = document.getElementById("triPanel");
+            diePanel.style.border = "1px solid #000000";
+            diePanel.style.width = "100px";
+            diePanel.style.height = "100px";
+        diePanel.style.margin = "auto";
+        diePanel.style.marginTop = "10px";
+        diePanel.style.marginBottom = "10px";
+        var tri = document.getElementById("threesided");
+        var ctx2 = tri.getContext("2d");
+        ctx2.fillstyle = "white";
+        ctx2.beginPath();
+        ctx2.moveTo(50,10);
+        ctx2.lineTo(100,90);
+        ctx2.lineTo(0,90);
+        ctx2.fill();
+
+        img = Math.floor((Math.random() * 6) + 1);
+
+        btn.onclick = function() {
+
+            x = Math.floor((Math.random() * 6) + 1);
+            var myVar = window.setInterval(spin, 100);
+            function stopIt() {
+                window.clearInterval(myVar);
+            }
+
+            window.setTimeout(stopIt, 2000);
+            draw(x);
+        }
+
+        function spin(){
+
+            var z = Math.floor((Math.random() * 6) + 1);
+            draw(z);
+        }
+
+        function drawNumber(x) {
+            var char = x.toString();
+            ctx.font="20px Georgia";
+            ctx.fillText(char,10,50);
+        }
+    </script>
+</body>
+</html>

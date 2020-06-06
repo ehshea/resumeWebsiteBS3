@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/png" href="images/wwwIcon.png">
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <!--<link rel="stylesheet" href="http://bootswatch.com/simplex/bootstrap.min.css"/>-->
+        
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans|Kaushan+Script|Pacifico' rel='stylesheet' type='text/css'>
+        
+        <link rel="stylesheet" type = "text/css" href="../index.css"/>
+        <link rel="stylesheet" type = "text/css" href="jsDie.css"/>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>   
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<title> JS Die </title>
+	</head>
+	<body>
+        <!--Jumbotron-->
+		<div class="jumbotron" >
+            <h1 class = "pageTitle"><strong>JS Die</strong></h1>
+        </div>
+        <!--end of Jumbotron-->
+        
+        <!--Nav Bar-->
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+              </button>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">        
+                <li><a class = "navLnk" href = "../index.html">About</a></li>          
+                <li><a class = "navLnk" href ="../resume/resume.html">Resume</a></li>
+                <li class="dropdown">
+                    <a class = "navLnk dropdown-toggle" data-toggle="dropdown" href = "#">Portfolio<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a id="portfolioLnk" class="navLnk" href="#">Portfolio</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li><a href = "jsDie.html"> Javascript Die </a></li>
+                    </ul>
+                <li><a class = "navLnk" href = "../links/links.html">Links</a></li>
+                <li><a class = "navLnk" href = "../contact/contact.html">Contact</a></li>
+              </ul>      
+            </div>
+          </div>
+        </nav>
+        <!--end of Nav Bar-->
+ 
+        <!--content panel-->
+		<div id = "main" class = "container-fluid">
+            <div id = "contentPanel">
+            <div id="diePanel1"><canvas id= "myCanvas" height = "100px" width="100px"></canvas></div>
+            <div class="btn-holder"><button id="rollBtn1">Roll</button></div>
+            <div class= "diePanel"><canvas id = "threesided"></canvas></div>
+            <div class = "btn-holder"><button id="rollBtn2"></button></div>
+                <script>
+                var contentPanel = document.getElementById("contentPanel");
+                var diePanel1 = document.getElementById("diePanel1");
+                diePanel1.style.border = "1px solid #000000";
+                diePanel1.style.borderRadius ="5px";
+                diePanel1.style.width = "100px";
+                diePanel1.style.height = "100px";
+                diePanel1.style.margin = "auto";
+                diePanel1.style.marginTop = "10px";
+                diePanel1.style.marginBottom = "10px";
+                var dieCanvas1 = document.getElementById("myCanvas");
+                var ctx = dieCanvas1.getContext("2d");
+                ctx.fillStyle = 'black';
+                var btn1 = document.getElementById("rollBtn1");
+                btn1.style.width="100px";
+                btn1.style.margin="auto";
+                btn1.style.marginTop = "10px";
+                btn1.style.marginBottom = "10px";
+                var btnHolder = document.getElementsByClassName("btn-holder");
+                btnHolder.style.textAlign="center";
+                var centerX = dieCanvas1.width / 2;
+                var centerY = dieCanvas1.height / 2;
+                var width = dieCanvas1.width;
+                var height = dieCanvas1.height;
+                var x = 0;
+
+                //var diePanels = document.getElementsByClassName("diePanel");
+                var tri = document.getElementById("threesided");
+                var ctx2 = tri.getContext("2d");
+                ctx2.fillstyle = "white";
+                ctx.beginPath();
+                ctx.moveTo(25,25);
+                ctx.lineTo(105,25);
+                ctx.lineTo(25,105);
+                ctx.fill();
+
+                img = Math.floor((Math.random() * 6) + 1);
+                draw(img);
+
+                btn.onclick = function() {
+
+                    x = Math.floor((Math.random() * 6) + 1);
+                    var myVar = window.setInterval(spin, 100);
+                    function stopIt() {
+                        window.clearInterval(myVar);
+                    }
+
+                    window.setTimeout(stopIt, 2000);
+                    draw(x);
+                }
+
+                function spin(){
+
+                    var z = Math.floor((Math.random() * 6) + 1);
+                    draw(z);
+                }
+
+
+                function draw(x){
+                    ctx.clearRect(0, 0, dieCanvas1.width, dieCanvas1.height);
+                    if(x%x != 0){
+                        console.log("Hey, no decimals!");
+                    }else {
+                        switch (x) {
+                            case 1:
+                                drawOne()
+                                break;
+                            case 2:
+                                drawTwo()
+                                break;
+                            case 3:
+                                drawThree()
+                                break;
+                            case 4:
+                                drawFour()
+                                break;
+                            case 5:
+                                drawOne();
+                                drawFour();
+                                break;
+                            case 6:
+                                drawSix();
+                                break;
+                        }
+                    }
+                }
+                //Draw functions
+                function drawOne() {
+                    ctx.beginPath();
+                    ctx.arc(centerX,centerY,10,0,2 * Math.PI);
+                    ctx.fill();
+                }
+
+                function drawTwo() {
+                    ctx.beginPath();
+                    ctx.arc(width/4,height/4 + centerY,10,0,2 * Math.PI);
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.arc(width/4 + centerX,height/4,10,0,2 * Math.PI);
+                    ctx.fill();
+                }
+
+                function drawThree() {
+                    ctx.beginPath();
+                    ctx.arc(width/6,height*(5/6),10,0,2 * Math.PI);
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.arc(centerX,centerY,10,0,2 * Math.PI);
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.arc(width*(5/6),height/6,10,0,2 * Math.PI);
+                    ctx.fill();
+
+                }
+
+                function drawFour() {
+                    ctx.beginPath();
+                    ctx.arc(width/4,height/4 + centerY,10,0,2 * Math.PI);
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.arc(width/4 + centerX,height/4 + centerY,10,0,2 * Math.PI);
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.arc(width/4 + centerX,height/4,10,0,2 * Math.PI);
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.arc(width/4,height/4,10,0,2 * Math.PI);
+                    ctx.fill();
+                }
+
+                function drawSix() {
+                    ctx.beginPath();
+                    ctx.arc(width/4,height/6,10,0,2 * Math.PI);
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.arc(width/4,centerY,10,0,2 * Math.PI);
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.arc(width/4,height*(5/6),10,0,2 * Math.PI);
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.arc(width/4 +centerX,height/6,10,0,2 * Math.PI);
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.arc(width/4 +centerX,height/2,10,0,2 * Math.PI);
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.arc(width/4 +centerX,height*(5/6),10,0,2 * Math.PI);
+                    ctx.fill();
+                }
+
+            </script>
+        </div>
+        <!--end of content panel-->
+		<footer>&copy eahedgepeth.com</footer>
+	</body>
+</html>
